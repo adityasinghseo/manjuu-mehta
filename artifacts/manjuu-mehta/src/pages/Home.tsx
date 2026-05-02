@@ -1,7 +1,14 @@
-import React from "react";
 import { motion } from "framer-motion";
-import { Phone, MessageCircle, Award, Star, Shield, Users } from "lucide-react";
+import { Phone, MessageCircle, Award, Star, Shield, Users, Images } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
+
+import img1 from "@assets/image_1777699685931.png";
+import img2 from "@assets/image_1777699643703.png";
+import img3 from "@assets/image_1777699652093.png";
+import img4 from "@assets/image_1777699668308.png";
+import img5 from "@assets/image_1777699516622.png";
+import img6 from "@assets/image_1777699528316.png";
 
 const AWARDS = [
   "Super Woman Award for Inspiring Women (2024)",
@@ -12,6 +19,15 @@ const AWARDS = [
   "Sahika India International Award – Best Numerologist (2023)",
   "Nakshatra Alankar Award (2025)",
   "Jyotish Mahakumbh Award (2025) — Presented by Pushkar Singh Dhami"
+];
+
+const GALLERY_PREVIEW = [
+  { src: img1, caption: "Manjuu Mehta – Astrologer, Numerologist & Vastu Expert" },
+  { src: img2, caption: "Sahika India International Excellence Awards (2023)" },
+  { src: img3, caption: "Jyotish Mahakumbh Award (2025)" },
+  { src: img4, caption: "Presented by Shri Pushkar Singh Dhami" },
+  { src: img5, caption: "Rising Excellence Award – Bharat Good Times (2024)" },
+  { src: img6, caption: "City Excellence Award – Haridwar (2024)" },
 ];
 
 const CALL_LINK = "tel:7310952576";
@@ -33,9 +49,9 @@ export default function Home() {
       <section className="relative min-h-[90vh] flex items-center pt-20 pb-32 overflow-hidden bg-background">
         <div className="absolute inset-0 z-0">
           <img 
-            src="/hero-portrait.png" 
+            src={img1}
             alt="Manjuu Mehta" 
-            className="w-full h-full object-cover object-center opacity-90"
+            className="w-full h-full object-cover object-top opacity-90"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
@@ -170,6 +186,67 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Gallery Preview Section */}
+      <section className="py-24 bg-card relative overflow-hidden">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn}
+            className="text-center mb-14"
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/20 text-secondary-foreground text-sm font-medium border border-secondary/30 mb-4">
+              <Images className="w-4 h-4" />
+              Award Moments & Milestones
+            </div>
+            <h2 className="text-3xl md:text-5xl font-serif font-bold text-foreground mb-4">Gallery</h2>
+            <p className="text-muted-foreground text-lg max-w-xl mx-auto">
+              Real moments from award ceremonies and recognitions across India.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl mx-auto mb-10">
+            {GALLERY_PREVIEW.map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.08, duration: 0.5 }}
+                className="group relative rounded-xl overflow-hidden border border-border shadow-sm hover:shadow-lg hover:border-secondary/40 transition-all duration-300"
+              >
+                <div className="aspect-[3/4] overflow-hidden">
+                  <img
+                    src={item.src}
+                    alt={item.caption}
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                  <p className="text-white text-xs font-serif leading-snug line-clamp-2">{item.caption}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn}
+            className="text-center"
+          >
+            <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full px-10 py-6 text-base h-auto">
+              <Link href="/gallery">
+                <Images className="w-5 h-5 mr-2" />
+                View Full Gallery
+              </Link>
+            </Button>
+          </motion.div>
         </div>
       </section>
 
