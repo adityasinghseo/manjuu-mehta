@@ -1,0 +1,26 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "XwqQKytsRC95Gd0E2BoH5"
+uri = "file://artifacts/manjuu-mehta/public/hero-portrait.png"
+type = "image"
+title = "Hero portrait of Indian astrologer"
+
+[[generated]]
+id = "RI6vOAQfdKp28WvaVnVuf"
+uri = "file://artifacts/manjuu-mehta/public/mandala.png"
+type = "image"
+title = "Golden mandala on maroon"
+
+[[generated]]
+id = "vqiI7MbgnrDe4gEDAs8pF"
+uri = "file://artifacts/manjuu-mehta/public/zodiac.png"
+type = "image"
+title = "Golden zodiac on dark blue"
+
+[[generated]]
+id = "8aVrpW6qD3XD9nAAJCWSR"
+uri = "file://artifacts/manjuu-mehta/public/sacred-geometry.png"
+type = "image"
+title = "Sacred geometry on ivory"
