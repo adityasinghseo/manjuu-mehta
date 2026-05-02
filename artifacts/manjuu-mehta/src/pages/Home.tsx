@@ -51,10 +51,10 @@ export default function Home() {
           <img 
             src={img1}
             alt="Manjuu Mehta" 
-            className="w-full h-full object-cover object-top"
+            className="w-full h-full object-cover object-right-top"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/50 to-background/10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to right, hsl(60 20% 98% / 0.97) 0%, hsl(60 20% 98% / 0.85) 35%, hsl(60 20% 98% / 0.3) 55%, transparent 70%)" }} />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, hsl(60 20% 98% / 0.5) 0%, transparent 20%)" }} />
         </div>
 
         <div className="container relative z-10 px-4 mx-auto">
