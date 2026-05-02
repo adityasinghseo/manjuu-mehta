@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
-import { Phone, MessageCircle, Award, Star, Shield, Users, Images } from "lucide-react";
+import { Phone, Award, Star, Shield, Users, Images } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/whatsapp-icon";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { CTASection } from "@/components/CTASection";
+import { TestimonialsSection } from "@/components/TestimonialsSection";
 
 import img1 from "@assets/ChatGPT_Image_May_2,_2026,_11_06_30_AM_1777700202357.png";
 import img2 from "@assets/image_1777699643703.png";
@@ -12,14 +14,14 @@ import img5 from "@assets/image_1777699516622.png";
 import img6 from "@assets/image_1777699528316.png";
 
 const AWARDS = [
-  "Super Woman Award for Inspiring Women (2024)",
-  "City Excellence Award by India News Index (2024)",
-  "Bharat Good Times – Rising Excellence Award (2024)",
-  "Her Story Times Award – Best Vastu Expert (2024)",
-  "Forever Star India Award – Best Astro Numerologist (Haridwar)",
-  "Sahika India International Award – Best Numerologist (2023)",
-  "Nakshatra Alankar Award (2025)",
-  "Jyotish Mahakumbh Award (2025) — Presented by Pushkar Singh Dhami"
+  { title: "Super Woman Award for Inspiring Women", year: "2024" },
+  { title: "City Excellence Award by India News Index", year: "2024" },
+  { title: "Bharat Good Times – Rising Excellence Award", year: "2024" },
+  { title: "Her Story Times Award – Best Vastu Expert", year: "2024" },
+  { title: "Forever Star India Award", subtitle: "Best Astro Numerologist (Haridwar)", year: "2024" },
+  { title: "Sahika India International Award", subtitle: "Best Numerologist", year: "2023" },
+  { title: "Nakshatra Alankar Award", year: "2025" },
+  { title: "Jyotish Mahakumbh Award", subtitle: "Presented by Shri Pushkar Singh Dhami", year: "2025" }
 ];
 
 const GALLERY_PREVIEW = [
@@ -48,8 +50,11 @@ export default function Home() {
     <div className="w-full">
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center pt-20 pb-32 overflow-hidden bg-background">
-        <div className="absolute inset-0 z-0">
-          <img 
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <motion.img 
+            initial={{ scale: 1 }}
+            animate={{ scale: 1.05 }}
+            transition={{ duration: 20, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
             src={img1}
             alt="Manjuu Mehta" 
             className="w-full h-full object-cover object-right-top"
@@ -79,15 +84,15 @@ export default function Home() {
             </motion.p>
             
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 py-6 text-lg h-auto">
+              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 py-6 text-lg h-auto shadow-lg hover:shadow-primary/25 hover:-translate-y-1 transition-all duration-300">
                 <a href={CALL_LINK}>
                   <Phone className="w-5 h-5 mr-2" />
                   Call Now
                 </a>
               </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-full px-8 py-6 text-lg h-auto border-2 border-[#25D366] text-[#25D366] hover:bg-[#25D366]/10">
+              <Button asChild size="lg" variant="outline" className="rounded-full px-8 py-6 text-lg h-auto border-2 border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white shadow-lg hover:shadow-[#25D366]/25 hover:-translate-y-1 transition-all duration-300">
                 <a href={WA_LINK} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="w-5 h-5 mr-2" />
+                  <WhatsAppIcon className="w-5 h-5 mr-2" />
                   WhatsApp Now
                 </a>
               </Button>
@@ -98,9 +103,13 @@ export default function Home() {
 
       {/* About Highlight */}
       <section className="py-24 bg-card relative overflow-hidden">
-        <div className="absolute top-0 right-0 opacity-5 pointer-events-none w-1/2 h-full max-w-lg">
+        <motion.div 
+          animate={{ rotate: 360 }}
+          transition={{ duration: 150, repeat: Infinity, ease: "linear" }}
+          className="absolute top-0 right-0 opacity-5 pointer-events-none w-1/2 h-full max-w-lg origin-center"
+        >
           <img src="/mandala.png" alt="" className="w-full h-full object-contain" />
-        </div>
+        </motion.div>
         <div className="container mx-auto px-4 relative z-10">
           <motion.div 
             initial="hidden"
@@ -138,12 +147,12 @@ export default function Home() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0, transition: { delay: idx * 0.1 } }
+                  hidden: { opacity: 0, y: 30, scale: 0.95 },
+                  visible: { opacity: 1, y: 0, scale: 1, transition: { delay: idx * 0.1, type: "spring", stiffness: 100, damping: 20 } }
                 }}
-                className="bg-background/5 border border-border/10 p-8 rounded-2xl text-center hover:bg-background/10 transition-colors"
+                className="group bg-background/5 border border-border/10 p-8 rounded-2xl text-center hover:bg-background/10 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="inline-flex p-4 rounded-full bg-secondary/20 text-secondary mb-6">
+                <div className="inline-flex p-4 rounded-full bg-secondary/20 text-secondary mb-6 group-hover:bg-secondary group-hover:text-white transition-colors duration-300">
                   <feature.icon className="w-8 h-8" />
                 </div>
                 <h3 className="text-xl font-serif font-bold text-background mb-3">{feature.title}</h3>
@@ -155,10 +164,14 @@ export default function Home() {
       </section>
 
       {/* Awards Section */}
-      <section className="py-24 bg-background relative">
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+      <section className="py-24 bg-background relative overflow-hidden">
+        <motion.div 
+          animate={{ y: [0, -20, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        >
           <img src="/zodiac.png" alt="" className="w-full h-full object-cover" />
-        </div>
+        </motion.div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-serif font-bold text-foreground mb-6">Recognitions & Excellence</h2>
@@ -167,7 +180,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {AWARDS.map((award, idx) => (
               <motion.div
                 key={idx}
@@ -175,15 +188,33 @@ export default function Home() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={{
-                  hidden: { opacity: 0, x: idx % 2 === 0 ? -20 : 20 },
-                  visible: { opacity: 1, x: 0, transition: { delay: idx * 0.05 } }
+                  hidden: { opacity: 0, y: 40, scale: 0.95 },
+                  visible: { opacity: 1, y: 0, scale: 1, transition: { delay: idx * 0.1, type: "spring", stiffness: 80, damping: 20 } }
                 }}
-                className="flex items-start gap-4 p-6 bg-card rounded-xl border border-border shadow-sm hover:shadow-md hover:border-secondary/50 transition-all group"
+                className="relative group p-[1px] rounded-3xl bg-gradient-to-b from-border/50 to-transparent hover:from-secondary/60 hover:to-primary/20 transition-all duration-700"
               >
-                <div className="flex-shrink-0 p-2 bg-primary/10 rounded-full group-hover:scale-110 group-hover:bg-primary/20 transition-all">
-                  <Award className="w-6 h-6 text-primary" />
+                {/* Glow Effect on Hover */}
+                <div className="absolute inset-0 bg-secondary/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-3xl" />
+                
+                {/* Card Content */}
+                <div className="relative h-full bg-card/80 backdrop-blur-sm rounded-[23px] p-8 shadow-sm border border-transparent group-hover:shadow-xl group-hover:-translate-y-1 transition-all duration-500 flex flex-col">
+                  <div className="flex justify-between items-start mb-6">
+                    <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center bg-primary/5 text-primary rounded-2xl group-hover:bg-primary group-hover:text-white group-hover:rotate-12 transition-all duration-500">
+                      <Award className="w-7 h-7" />
+                    </div>
+                    <span className="inline-flex items-center justify-center px-4 py-1.5 bg-secondary/10 text-secondary text-xs font-bold uppercase tracking-widest rounded-full border border-secondary/20 group-hover:bg-secondary group-hover:text-white transition-colors duration-500">
+                      {award.year}
+                    </span>
+                  </div>
+                  <h3 className="font-serif text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300 leading-snug">
+                    {award.title}
+                  </h3>
+                  {award.subtitle && (
+                    <p className="text-sm text-muted-foreground leading-relaxed mt-auto border-t border-border/50 pt-4 group-hover:border-secondary/30 transition-colors duration-500">
+                      {award.subtitle}
+                    </p>
+                  )}
                 </div>
-                <p className="font-serif text-lg font-medium text-foreground">{award}</p>
               </motion.div>
             ))}
           </div>
@@ -250,6 +281,8 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      <TestimonialsSection />
 
       <CTASection />
     </div>

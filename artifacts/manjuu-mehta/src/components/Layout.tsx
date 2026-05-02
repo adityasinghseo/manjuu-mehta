@@ -1,7 +1,8 @@
 import React from "react";
 import { Link, useLocation } from "wouter";
-import { Phone, MessageCircle, Menu, X, Mail, MapPin } from "lucide-react";
+import { Phone, Menu, X, Mail, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { WhatsAppIcon } from "@/components/ui/whatsapp-icon";
 
 const CALL_LINK = "tel:7310952576";
 const WA_LINK = "https://wa.me/917310952576?text=Hello%2C%20I%20want%20consultation%20regarding%20Astrology%2FNumerology%2FVastu";
@@ -13,6 +14,8 @@ const NAV_LINKS = [
   { href: "/gallery", label: "Gallery" },
   { href: "/contact", label: "Contact" },
 ];
+
+
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -65,7 +68,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium bg-[#25D366] text-white rounded-md hover:bg-[#20bd5a] transition-colors shadow-sm"
             >
-              <MessageCircle className="w-4 h-4" />
+              <WhatsAppIcon className="w-4 h-4" />
               WhatsApp
             </a>
           </div>
@@ -109,7 +112,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 px-4 py-3 text-base font-medium bg-[#25D366] text-white rounded-md"
                 >
-                  <MessageCircle className="w-5 h-5" />
+                  <WhatsAppIcon className="w-5 h-5" />
                   WhatsApp Now
                 </a>
               </div>
@@ -154,7 +157,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/15 text-xs font-medium text-white/70 hover:border-[#25D366]/60 hover:text-[#25D366] transition-colors"
                 >
-                  <MessageCircle className="w-3 h-3" />
+                  <WhatsAppIcon className="w-3 h-3" />
                   WhatsApp
                 </a>
               </div>
@@ -279,7 +282,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           className="flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-xl hover:scale-110 transition-transform duration-200"
           aria-label="WhatsApp Now"
         >
-          <MessageCircle className="w-7 h-7" />
+          <WhatsAppIcon className="w-7 h-7" />
         </a>
       </div>
       <div className="fixed bottom-6 left-6 z-50 flex flex-col gap-4 md:hidden">

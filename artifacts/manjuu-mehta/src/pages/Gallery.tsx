@@ -75,10 +75,15 @@ export default function Gallery() {
 
   return (
     <div className="w-full" onKeyDown={handleKey} tabIndex={-1}>
-      {/* Page Header */}
       <section className="py-24 bg-foreground text-background relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5 pointer-events-none">
-          <img src={img3} alt="" className="w-full h-full object-cover object-top" />
+        <div className="absolute inset-0 opacity-5 pointer-events-none overflow-hidden">
+          <motion.img 
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+            src={img3} 
+            alt="" 
+            className="w-full h-full object-cover object-top origin-center" 
+          />
         </div>
         <div className="container mx-auto px-4 relative z-10 text-center">
           <motion.div
@@ -108,30 +113,33 @@ export default function Gallery() {
             {GALLERY.map((item, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.06, duration: 0.5 }}
+                transition={{ delay: idx * 0.08, type: "spring", stiffness: 80, damping: 20 }}
                 onClick={() => openLightbox(idx)}
-                className="group relative cursor-pointer rounded-2xl overflow-hidden border border-border shadow-sm hover:shadow-xl hover:border-secondary/40 transition-all duration-300 bg-card"
+                className="relative group p-[1px] cursor-pointer rounded-3xl bg-gradient-to-b from-border/50 to-transparent hover:from-secondary/60 hover:to-primary/20 transition-all duration-700"
               >
-                <div className="aspect-[3/4] overflow-hidden">
+                {/* Glow Effect on Hover */}
+                <div className="absolute inset-0 bg-secondary/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-3xl" />
+                
+                <div className="relative aspect-[3/4] overflow-hidden rounded-[23px] bg-card border border-transparent group-hover:border-transparent group-hover:shadow-2xl group-hover:-translate-y-1 transition-all duration-500">
                   <img
                     src={item.src}
                     alt={item.caption}
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
                   />
-                </div>
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
-                  <span className="text-xs font-medium text-secondary uppercase tracking-widest mb-1">{item.tag}</span>
-                  <p className="text-sm font-serif text-white leading-snug line-clamp-3">{item.caption}</p>
-                </div>
-                {/* Tag pill always visible */}
-                <div className="absolute top-3 left-3">
-                  <span className="px-2 py-0.5 rounded-full bg-foreground/60 text-secondary text-xs font-medium backdrop-blur-sm">
-                    {item.tag}
-                  </span>
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
+                    <span className="text-xs font-bold text-secondary uppercase tracking-widest mb-2">{item.tag}</span>
+                    <p className="text-base font-serif text-white leading-snug">{item.caption}</p>
+                  </div>
+                  {/* Tag pill always visible */}
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1 rounded-full bg-black/60 text-secondary border border-white/10 text-[10px] font-bold uppercase tracking-widest backdrop-blur-md shadow-lg">
+                      {item.tag}
+                    </span>
+                  </div>
                 </div>
               </motion.div>
             ))}

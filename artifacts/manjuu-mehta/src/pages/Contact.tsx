@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Phone, MessageCircle, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/whatsapp-icon";
 import { Button } from "@/components/ui/button";
 import { CTASection } from "@/components/CTASection";
 
@@ -21,7 +22,7 @@ const contactItems = [
     linkLabel: "Call Now",
     bg: "bg-primary/10",
     iconColor: "text-primary",
-    btnClass: "bg-primary hover:bg-primary/90 text-primary-foreground",
+    btnClass: "bg-primary hover:bg-primary/90 text-primary-foreground hover:shadow-lg hover:shadow-primary/30 transition-all",
   },
   {
     icon: Phone,
@@ -31,17 +32,17 @@ const contactItems = [
     linkLabel: "Call Now",
     bg: "bg-primary/10",
     iconColor: "text-primary",
-    btnClass: "bg-primary hover:bg-primary/90 text-primary-foreground",
+    btnClass: "bg-primary hover:bg-primary/90 text-primary-foreground hover:shadow-lg hover:shadow-primary/30 transition-all",
   },
   {
-    icon: MessageCircle,
+    icon: WhatsAppIcon,
     label: "WhatsApp",
     value: "+91 7310952576",
     link: WA_LINK,
     linkLabel: "Chat on WhatsApp",
     bg: "bg-[#25D366]/10",
     iconColor: "text-[#25D366]",
-    btnClass: "bg-[#25D366] hover:bg-[#20bd5a] text-white",
+    btnClass: "bg-[#25D366] hover:bg-[#20bd5a] text-white hover:shadow-lg hover:shadow-[#25D366]/30 transition-all",
     external: true,
   },
   {
@@ -52,7 +53,7 @@ const contactItems = [
     linkLabel: "Send Email",
     bg: "bg-secondary/20",
     iconColor: "text-secondary-foreground",
-    btnClass: "bg-secondary hover:bg-secondary/90 text-secondary-foreground",
+    btnClass: "bg-secondary hover:bg-secondary/90 text-secondary-foreground hover:shadow-lg hover:shadow-secondary/30 transition-all",
   },
 ];
 
@@ -102,37 +103,41 @@ export default function Contact() {
               {contactItems.map((item, idx) => (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1, duration: 0.5 }}
-                  className="flex flex-col gap-5 p-8 bg-card rounded-2xl border border-border shadow-sm hover:shadow-md hover:border-secondary/40 transition-all"
+                  transition={{ delay: idx * 0.1, type: "spring", stiffness: 80, damping: 20 }}
+                  className="relative group p-[1px] rounded-3xl bg-gradient-to-b from-border/50 to-transparent hover:from-secondary/50 hover:to-primary/20 transition-all duration-700"
                 >
-                  <div className="flex items-center gap-4">
-                    <div className={`p-3 rounded-xl ${item.bg}`}>
-                      <item.icon className={`w-6 h-6 ${item.iconColor}`} />
+                  <div className="absolute inset-0 bg-secondary/5 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-3xl" />
+                  
+                  <div className="relative h-full bg-card/80 backdrop-blur-sm rounded-[23px] p-8 flex flex-col gap-6 shadow-sm border border-transparent group-hover:shadow-xl group-hover:-translate-y-1 transition-all duration-500">
+                    <div className="flex items-center gap-5">
+                      <div className={`p-4 rounded-2xl ${item.bg} group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500`}>
+                        <item.icon className={`w-7 h-7 ${item.iconColor}`} />
+                      </div>
+                      <div>
+                        <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-1">
+                          {item.label}
+                        </p>
+                        <p className="font-serif text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                          {item.value}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-0.5">
-                        {item.label}
-                      </p>
-                      <p className="font-serif text-lg font-semibold text-foreground">
-                        {item.value}
-                      </p>
-                    </div>
-                  </div>
-                  <Button
-                    asChild
-                    className={`w-full rounded-full py-5 h-auto font-semibold ${item.btnClass}`}
-                  >
-                    <a
-                      href={item.link}
-                      {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    <Button
+                      asChild
+                      className={`w-full rounded-full py-6 h-auto font-bold text-base mt-auto ${item.btnClass}`}
                     >
-                      <item.icon className="w-4 h-4 mr-2" />
-                      {item.linkLabel}
-                    </a>
-                  </Button>
+                      <a
+                        href={item.link}
+                        {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                      >
+                        <item.icon className="w-5 h-5 mr-2" />
+                        {item.linkLabel}
+                      </a>
+                    </Button>
+                  </div>
                 </motion.div>
               ))}
             </div>

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Phone, MessageCircle, CheckCircle2, Sparkles } from "lucide-react";
+import { Phone, CheckCircle2, Sparkles } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/whatsapp-icon";
 import { Button } from "@/components/ui/button";
 import { CTASection } from "@/components/CTASection";
 
@@ -158,9 +159,13 @@ export default function Services() {
     <div className="w-full">
       {/* Hero */}
       <section className="py-28 bg-foreground text-background relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
+        <motion.div 
+          animate={{ scale: [1, 1.05, 1], rotate: [0, 5, 0] }}
+          transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute inset-0 opacity-[0.04] pointer-events-none origin-center"
+        >
           <img src="/zodiac.png" alt="" className="w-full h-full object-cover" />
-        </div>
+        </motion.div>
         {/* Decorative large number */}
         <div className="absolute right-8 top-1/2 -translate-y-1/2 text-[20rem] font-serif font-bold text-background/[0.03] leading-none select-none pointer-events-none hidden lg:block">
           ॐ
@@ -222,10 +227,11 @@ export default function Services() {
                 initial={{ opacity: 0, scale: 0.85 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-                className={`flex-shrink-0 w-56 h-56 lg:w-72 lg:h-72 rounded-3xl ${service.accentBg} p-8 flex items-center justify-center border ${service.bg === "bg-foreground" ? "border-white/10" : "border-border"} shadow-lg`}
+                transition={{ duration: 0.7, type: "spring" }}
+                className={`flex-shrink-0 w-56 h-56 lg:w-72 lg:h-72 rounded-3xl ${service.accentBg} p-8 flex items-center justify-center border ${service.bg === "bg-foreground" ? "border-white/10" : "border-border"} shadow-lg relative group overflow-hidden`}
               >
-                <div className={service.symbolColor}>
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className={`${service.symbolColor} group-hover:scale-110 transition-transform duration-700 relative z-10`}>
                   <service.Symbol />
                 </div>
               </motion.div>
@@ -268,12 +274,12 @@ export default function Services() {
                     <motion.div
                       key={i}
                       variants={{ hidden: { opacity: 0, x: -12 }, visible: { opacity: 1, x: 0, transition: { duration: 0.4 } } }}
-                      className={`flex items-start gap-3 p-4 rounded-xl border ${service.bg === "bg-foreground" ? "border-white/10 bg-white/5 hover:bg-white/10" : "border-border bg-card hover:border-primary/30 hover:shadow-sm"} transition-all`}
+                      className={`group flex items-start gap-4 p-5 rounded-2xl border backdrop-blur-sm ${service.bg === "bg-foreground" ? "border-white/10 bg-white/5 hover:bg-white/10" : "border-border bg-card/80 hover:border-primary/40 hover:shadow-md"} transition-all duration-300`}
                     >
-                      <CheckCircle2 className={`w-4 h-4 flex-shrink-0 mt-0.5 ${service.bg === "bg-foreground" ? "text-secondary" : "text-primary"}`} />
+                      <CheckCircle2 className={`w-5 h-5 flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-300 ${service.bg === "bg-foreground" ? "text-secondary" : "text-primary"}`} />
                       <div>
-                        <p className={`font-semibold text-sm ${service.bg === "bg-foreground" ? "text-background" : "text-foreground"}`}>{item.name}</p>
-                        <p className={`text-xs mt-0.5 ${service.bg === "bg-foreground" ? "text-background/50" : "text-muted-foreground"}`}>{item.desc}</p>
+                        <p className={`font-serif text-base font-bold mb-1 ${service.bg === "bg-foreground" ? "text-background group-hover:text-secondary" : "text-foreground group-hover:text-primary"} transition-colors duration-300`}>{item.name}</p>
+                        <p className={`text-sm leading-relaxed ${service.bg === "bg-foreground" ? "text-background/60" : "text-muted-foreground"}`}>{item.desc}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -287,11 +293,11 @@ export default function Services() {
                   transition={{ delay: 0.3 }}
                   className="flex flex-col sm:flex-row gap-3 pt-2"
                 >
-                  <Button asChild className="bg-primary hover:bg-primary/90 text-white rounded-full px-7 py-5 h-auto font-semibold">
-                    <a href={CALL_LINK}><Phone className="w-4 h-4 mr-2" />Call for Consultation</a>
+                  <Button asChild className={`rounded-full px-8 py-6 h-auto font-bold text-base shadow-lg hover:-translate-y-1 transition-all duration-300 ${service.bg === "bg-foreground" ? "bg-secondary hover:bg-secondary/90 text-secondary-foreground hover:shadow-secondary/25" : "bg-primary hover:bg-primary/90 text-white hover:shadow-primary/25"}`}>
+                    <a href={CALL_LINK}><Phone className="w-5 h-5 mr-2" />Call for Consultation</a>
                   </Button>
-                  <Button asChild variant="outline" className="rounded-full px-7 py-5 h-auto font-semibold border-2 border-[#25D366] text-[#25D366] hover:bg-[#25D366]/10 bg-transparent">
-                    <a href={WA_LINK} target="_blank" rel="noopener noreferrer"><MessageCircle className="w-4 h-4 mr-2" />WhatsApp Now</a>
+                  <Button asChild variant="outline" className={`rounded-full px-8 py-6 h-auto font-bold text-base shadow-lg hover:-translate-y-1 transition-all duration-300 border-2 border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white hover:shadow-[#25D366]/25 ${service.bg === "bg-foreground" ? "bg-transparent" : "bg-background"}`}>
+                    <a href={WA_LINK} target="_blank" rel="noopener noreferrer"><WhatsAppIcon className="w-5 h-5 mr-2" />WhatsApp Now</a>
                   </Button>
                 </motion.div>
               </div>
@@ -320,18 +326,18 @@ export default function Services() {
               {STEPS.map((step, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.12, duration: 0.5 }}
-                  className="flex flex-col items-center text-center gap-4"
+                  transition={{ delay: i * 0.12, type: "spring", stiffness: 80, damping: 20 }}
+                  className="flex flex-col items-center text-center gap-5 p-8 bg-background/50 backdrop-blur-sm rounded-3xl border border-border shadow-sm hover:shadow-xl hover:-translate-y-2 hover:border-secondary/30 transition-all duration-500 group"
                 >
-                  <div className="relative w-20 h-20 rounded-full bg-background border-2 border-primary/30 flex items-center justify-center shadow-md z-10">
-                    <span className="font-serif text-2xl font-bold text-primary">{step.num}</span>
+                  <div className="relative w-24 h-24 rounded-full bg-card border-4 border-primary/20 flex items-center justify-center shadow-inner group-hover:border-primary/50 group-hover:bg-primary/5 transition-colors duration-500 z-10">
+                    <span className="font-serif text-3xl font-bold text-primary">{step.num}</span>
                   </div>
                   <div>
-                    <h3 className="font-serif text-lg font-bold text-foreground mb-1">{step.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+                    <h3 className="font-serif text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">{step.title}</h3>
+                    <p className="text-base text-muted-foreground leading-relaxed">{step.desc}</p>
                   </div>
                 </motion.div>
               ))}

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Phone, MessageCircle, Clock, Star } from "lucide-react";
+import { Phone, Clock, Star } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/whatsapp-icon";
 
 const CALL_LINK = "tel:7310952576";
 const WA_LINK =
@@ -14,9 +15,13 @@ export function CTASection() {
   return (
     <section className="relative overflow-hidden bg-foreground">
       {/* Subtle background texture */}
-      <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
+      <motion.div 
+        animate={{ rotate: -360, scale: [1, 1.1, 1] }}
+        transition={{ duration: 200, repeat: Infinity, ease: "linear" }}
+        className="absolute inset-0 opacity-[0.04] pointer-events-none origin-center"
+      >
         <img src="/sacred-geometry.png" alt="" className="w-full h-full object-cover" />
-      </div>
+      </motion.div>
 
       {/* Top gold rule */}
       <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-secondary to-transparent opacity-60" />
@@ -91,7 +96,7 @@ export function CTASection() {
               className="group flex items-center gap-5 p-6 rounded-2xl border border-white/10 bg-white/5 hover:bg-[#25D366] hover:border-[#25D366] transition-all duration-300 cursor-pointer"
             >
               <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-[#25D366]/20 group-hover:bg-white/20 flex items-center justify-center transition-colors duration-300">
-                <MessageCircle className="w-6 h-6 text-[#25D366] group-hover:text-white transition-colors" />
+                <WhatsAppIcon className="w-6 h-6 text-[#25D366] group-hover:text-white transition-colors" />
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-xs font-semibold uppercase tracking-widest text-background/40 group-hover:text-white/60 mb-0.5 transition-colors">WhatsApp</p>
@@ -99,7 +104,7 @@ export function CTASection() {
                 <p className="text-xs text-background/40 group-hover:text-white/50 transition-colors mt-0.5">Pre-filled consultation message</p>
               </div>
               <div className="flex-shrink-0 w-8 h-8 rounded-full bg-white/10 group-hover:bg-white/20 flex items-center justify-center transition-colors">
-                <MessageCircle className="w-3.5 h-3.5 text-background/50 group-hover:text-white/70" />
+                <WhatsAppIcon className="w-3.5 h-3.5 text-background/50 group-hover:text-white/70" />
               </div>
             </a>
 
