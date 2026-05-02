@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Phone, MessageCircle, Award, Star, Shield, Users, Images } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { CTASection } from "@/components/CTASection";
 
 import img1 from "@assets/ChatGPT_Image_May_2,_2026,_11_06_30_AM_1777700202357.png";
 import img2 from "@assets/image_1777699643703.png";
@@ -250,37 +251,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-32 bg-primary text-primary-foreground text-center relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
-          <img src="/sacred-geometry.png" alt="" className="w-full h-full object-cover" />
-        </div>
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeIn}
-            className="max-w-2xl mx-auto space-y-8"
-          >
-            <h2 className="text-4xl md:text-6xl font-serif font-bold">Speak directly with expert now and get instant guidance</h2>
-            <div className="flex flex-col sm:flex-row justify-center gap-4 pt-8">
-              <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-full px-8 py-6 text-lg h-auto">
-                <a href={CALL_LINK}>
-                  <Phone className="w-5 h-5 mr-2" />
-                  Call Now
-                </a>
-              </Button>
-              <Button asChild size="lg" className="bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-full px-8 py-6 text-lg h-auto">
-                <a href={WA_LINK} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="w-5 h-5 mr-2" />
-                  WhatsApp Now
-                </a>
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <CTASection />
     </div>
   );
 }

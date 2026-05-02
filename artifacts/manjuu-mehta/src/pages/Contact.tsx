@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Phone, MessageCircle, Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { CTASection } from "@/components/CTASection";
 
 const CALL_LINK = "tel:7310952576";
 const WA_LINK =
@@ -177,50 +178,7 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* WhatsApp CTA Banner */}
-      <section className="py-28 bg-primary text-primary-foreground text-center relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
-          <img src="/sacred-geometry.png" alt="" className="w-full h-full object-cover" />
-        </div>
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeIn}
-            className="max-w-2xl mx-auto space-y-8"
-          >
-            <h2 className="text-3xl md:text-5xl font-serif font-bold">
-              Start Your Consultation Today
-            </h2>
-            <p className="text-lg text-primary-foreground/80">
-              WhatsApp is the fastest way to connect. Tap below and send a message right now.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
-              <Button
-                asChild
-                size="lg"
-                className="bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-full px-8 py-6 text-lg h-auto"
-              >
-                <a href={CALL_LINK}>
-                  <Phone className="w-5 h-5 mr-2" />
-                  Call Now
-                </a>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                className="bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-full px-8 py-6 text-lg h-auto"
-              >
-                <a href={WA_LINK} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="w-5 h-5 mr-2" />
-                  WhatsApp Now
-                </a>
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <CTASection />
     </div>
   );
 }
