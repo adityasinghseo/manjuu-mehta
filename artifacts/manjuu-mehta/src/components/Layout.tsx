@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "wouter";
-import { Phone, MessageCircle, Menu, X } from "lucide-react";
+import { Phone, MessageCircle, Menu, X, Mail, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const CALL_LINK = "tel:7310952576";
@@ -124,14 +124,148 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </main>
 
       {/* Footer */}
-      <footer className="bg-foreground text-background py-12 mt-auto">
-        <div className="container mx-auto px-4 text-center space-y-4">
-          <h2 className="font-serif text-2xl font-bold text-secondary">Manjuu Mehta</h2>
-          <p className="text-muted-foreground max-w-md mx-auto">
-            Certified Vastu Advisor, Astrologer, and Karmic Numerologist transforming lives through ancient sciences.
-          </p>
-          <div className="pt-8 text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Manjuu Mehta. All rights reserved.
+      <footer style={{ backgroundColor: "#1c0a06" }} className="text-white/80 mt-auto">
+        {/* Top gold rule */}
+        <div className="h-1 w-full" style={{ background: "linear-gradient(to right, transparent, hsl(46 65% 52%), transparent)" }} />
+
+        <div className="container mx-auto px-4 pt-16 pb-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-14">
+
+            {/* Col 1 — Brand */}
+            <div className="lg:col-span-1 space-y-5">
+              <div>
+                <h2 className="font-serif text-3xl font-bold text-secondary leading-tight">Manjuu Mehta</h2>
+                <p className="text-xs uppercase tracking-[0.2em] text-white/40 mt-1">Astrology · Numerology · Vastu</p>
+              </div>
+              <p className="text-sm text-white/55 leading-relaxed">
+                Certified Vastu Advisor, Astrologer, and Karmic Numerologist with over a decade of experience transforming lives through ancient Indian sciences.
+              </p>
+              <div className="flex gap-3 pt-1">
+                <a
+                  href={CALL_LINK}
+                  className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/15 text-xs font-medium text-white/70 hover:border-secondary/60 hover:text-secondary transition-colors"
+                >
+                  <Phone className="w-3 h-3" />
+                  Call Now
+                </a>
+                <a
+                  href={WA_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/15 text-xs font-medium text-white/70 hover:border-[#25D366]/60 hover:text-[#25D366] transition-colors"
+                >
+                  <MessageCircle className="w-3 h-3" />
+                  WhatsApp
+                </a>
+              </div>
+            </div>
+
+            {/* Col 2 — Quick Links */}
+            <div className="space-y-5">
+              <h3 className="text-sm font-semibold uppercase tracking-widest text-secondary">Quick Links</h3>
+              <ul className="space-y-3">
+                {[
+                  { href: "/", label: "Home" },
+                  { href: "/about", label: "About Manjuu Mehta" },
+                  { href: "/services", label: "Services" },
+                  { href: "/gallery", label: "Gallery" },
+                  { href: "/contact", label: "Contact" },
+                ].map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-white/55 hover:text-secondary transition-colors flex items-center gap-2 group"
+                    >
+                      <span className="w-1 h-1 rounded-full bg-secondary/50 group-hover:bg-secondary transition-colors flex-shrink-0" />
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Col 3 — Services */}
+            <div className="space-y-5">
+              <h3 className="text-sm font-semibold uppercase tracking-widest text-secondary">Services</h3>
+              <ul className="space-y-3">
+                {[
+                  "Kundli Analysis",
+                  "Marriage Compatibility",
+                  "Name Correction",
+                  "Lucky Numbers",
+                  "Home & Office Vastu",
+                  "Energy Correction",
+                ].map((service) => (
+                  <li key={service}>
+                    <Link
+                      href="/services"
+                      className="text-sm text-white/55 hover:text-secondary transition-colors flex items-center gap-2 group"
+                    >
+                      <span className="w-1 h-1 rounded-full bg-secondary/50 group-hover:bg-secondary transition-colors flex-shrink-0" />
+                      {service}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Col 4 — Contact */}
+            <div className="space-y-5">
+              <h3 className="text-sm font-semibold uppercase tracking-widest text-secondary">Contact</h3>
+              <ul className="space-y-4">
+                <li>
+                  <a href={CALL_LINK} className="flex items-start gap-3 group">
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: "rgba(255,255,255,0.07)" }}>
+                      <Phone className="w-3.5 h-3.5 text-secondary" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-white/35 uppercase tracking-widest mb-0.5">Phone</p>
+                      <p className="text-sm text-white/70 group-hover:text-secondary transition-colors font-medium">+91 73109 52576</p>
+                      <p className="text-sm text-white/70 group-hover:text-secondary transition-colors font-medium">+91 77373 29191</p>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="mailto:manjuumehta1@gmail.com" className="flex items-start gap-3 group">
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: "rgba(255,255,255,0.07)" }}>
+                      <Mail className="w-3.5 h-3.5 text-secondary" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-white/35 uppercase tracking-widest mb-0.5">Email</p>
+                      <p className="text-sm text-white/70 group-hover:text-secondary transition-colors">manjuumehta1@gmail.com</p>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style={{ backgroundColor: "rgba(255,255,255,0.07)" }}>
+                      <MapPin className="w-3.5 h-3.5 text-secondary" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-white/35 uppercase tracking-widest mb-0.5">Address</p>
+                      <p className="text-sm text-white/70 leading-relaxed">Krishna Nagar, Kankhal<br />Haridwar, Uttarakhand</p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom bar */}
+          <div className="border-t pt-8" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+              <p className="text-xs text-white/30">
+                &copy; {new Date().getFullYear()} Manjuu Mehta. All rights reserved.
+              </p>
+              <p className="text-xs text-white/25 text-center">
+                Elite Member — All India Federation of Astrologers Society (AIFAS)
+              </p>
+              <div className="flex gap-4">
+                <Link href="/about" className="text-xs text-white/30 hover:text-white/60 transition-colors">About</Link>
+                <Link href="/services" className="text-xs text-white/30 hover:text-white/60 transition-colors">Services</Link>
+                <Link href="/contact" className="text-xs text-white/30 hover:text-white/60 transition-colors">Contact</Link>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
