@@ -3,7 +3,7 @@ import { Phone, MessageCircle, Award, Star, Shield, Users, Images } from "lucide
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
-import img1 from "@assets/image_1777699685931.png";
+import img1 from "@assets/ChatGPT_Image_May_2,_2026,_11_06_30_AM_1777700202357.png";
 import img2 from "@assets/image_1777699643703.png";
 import img3 from "@assets/image_1777699652093.png";
 import img4 from "@assets/image_1777699668308.png";
